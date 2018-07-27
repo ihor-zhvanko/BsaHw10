@@ -13,4 +13,16 @@ export class AirhostessService extends BaseService<IAirhostess> {
   ) {
     super(httpClient, 'https://localhost:5001/api/airhostesses');
   }
+
+  protected mapOnGet(model: IAirhostess): IAirhostess {
+    return {
+      ...model,
+      birthDate: new Date(model.birthDate)
+    };
+  }
+
+  // public details(id: number): IAirhostess {
+  //   const url = ``;
+  //   return this.httpClient.get()
+  // }
 }

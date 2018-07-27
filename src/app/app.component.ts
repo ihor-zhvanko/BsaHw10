@@ -9,15 +9,10 @@ import { IAirhostess } from './common/models';
 })
 export class AppComponent implements OnInit {
   title = 'BsaHw10';
-  airhostesses: IAirhostess[];
 
-  ngOnInit(): void {
-    this.airhostessService.getAll().subscribe((result) => {
-      this.airhostesses = result;
-    });
-  }
   constructor(
     protected airhostessService: AirhostessService
   ) { }
 
+  public ngOnInit(): void { }
 }

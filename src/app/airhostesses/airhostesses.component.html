@@ -1,0 +1,12 @@
+<mat-card *ngFor="let airhostess of airhostesses" class="person">
+  <img mat-card-image src="/assets/img/airhostess.png">
+  <mat-card-header>
+    <mat-card-title>{{airhostess | fullname}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <mat-divider></mat-divider>
+    <button [routerLink]="[airhostess.id]" mat-button [color]="'primary'">Details</button>
+    <button mat-button [color]="'warn'">Delete</button>
+  </mat-card-actions>
+</mat-card>

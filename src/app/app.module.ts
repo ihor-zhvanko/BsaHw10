@@ -1,20 +1,45 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
+import {
+  MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule,
+  MatListModule, MatDialogModule
+} from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { AirportCommonModule } from './common/common.module';
+
+import { AppComponent } from './app.component';
+import { AirhostessesComponent } from './airhostesses/airhostesses.component';
+import { FullnamePipe } from './pipes/fullname.pipe';
+import { AirhostessDetailsComponent } from './airhostesses/airhostess-details/airhostess-details.component';
+import { AirhostessModalComponent } from './modals/airhostess-modal/airhostess-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+    FullnamePipe,
+
+    AirhostessesComponent,
+    AirhostessDetailsComponent,
+    AirhostessModalComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    AirportCommonModule
+    AirportCommonModule,
+
+    // Material
+    MatButtonModule, MatSidenavModule, MatIconModule,
+    MatCardModule, MatToolbarModule, MatListModule,
+    MatDialogModule
+
   ],
-  providers: [],
+  entryComponents: [AirhostessModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

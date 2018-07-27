@@ -1,7 +1,8 @@
-export interface IAirhostess {
+export interface IPilot {
   id: number;
   firstName: string;
   lastName: string;
   birthDate: Date;
-  crewId: number;
+  experience: number;
 }
+

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AirportCommonModule } from '../common.module';
 
-@Injectable({
-  providedIn: AirportCommonModule
-})
+@Injectable()
 export class PlaneTypeService {
 
   constructor() { }
