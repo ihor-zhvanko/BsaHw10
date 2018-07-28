@@ -12,12 +12,22 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
-      <td mat-cell *matCellDef="let element" [routerLink]="[element.id]"> {{element.date}} </td>
+      <td mat-cell *matCellDef="let element" [routerLink]="[element.id]"> {{element.date | date:'dd/MM/yyyy'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="flight">
       <th mat-header-cell *matHeaderCellDef> Flight </th>
-      <td mat-cell *matCellDef="let element" [routerLink]="[element.id]"> {{element}} </td>
+      <td mat-cell *matCellDef="let element" [routerLink]="[element.id]"> {{element.flight | route}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="plane">
+      <th mat-header-cell *matHeaderCellDef> Flight </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="[element.id]"> {{element.plane.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="crew">
+      <th mat-header-cell *matHeaderCellDef> Crew </th>
+      <td mat-cell *matCellDef="let element" [routerLink]="[element.id]"> {{element.crew | crew}} </td>
     </ng-container>
 
     <ng-container matColumnDef="delete">
@@ -29,26 +39,42 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['pilot', 'airhostesses', 'delete']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['pilot', 'airhostesses', 'delete'];" class="cursor-pointer"></tr>
+    <tr mat-header-row *matHeaderRowDef="['date', 'flight', 'plane', 'crew']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['date', 'flight', 'plane', 'crew'];" class="cursor-pointer"></tr>
   </table>
   <mat-paginator [pageSize]='10' Buttons></mat-paginator>
 </div>
 
 
 <ng-template #createDialog>
-  <form (submit)="onCreateFormSubmit(newCrew)" class="d-flex flex-column px-3" action="javascript:void(0)">
+  <form (submit)="onCreateFormSubmit(newDeparture)" class="d-flex flex-column px-3" action="javascript:void(0)">
     <h4 class="text-center">Create</h4>
+
     <mat-form-field class="my-1">
-      <mat-select required [compareWith]="compareEntities" placeholder="Pilot" [(value)]="newCrew.pilot">
-        <mat-option *ngFor="let pilot of pilots" [value]="pilot">{{pilot | fullname}}</mat-option>
+      <input id="date" required name="date" #date="ngModel" matInput [matDatepicker]="picker" placeholder="Date"
+        [(ngModel)]="newDeparture.date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="date.invalid && (date.dirty || date.touched)">
+      <mat-hint *ngIf="date.errors.required">Date is required</mat-hint>
+    </div>
+
+    <mat-form-field class="my-1">
+      <mat-select required [compareWith]="compareEntities" placeholder="Flight" [(value)]="newDeparture.flight">
+        <mat-option *ngFor="let flight of flights" [value]="flight">{{flight | route}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="my-1">
-      <mat-select [compareWith]="compareEntities" placeholder="Airhostesses" [(value)]="newCrew.airhostesses"
-        multiple>
-        <mat-option *ngFor="let airhostess of airhostesses" [value]="airhostess">{{airhostess | fullname}}</mat-option>
+      <mat-select required [compareWith]="compareEntities" placeholder="Plane" [(value)]="newDeparture.plane">
+        <mat-option *ngFor="let plane of planes" [value]="plane">{{plane.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="my-1">
+      <mat-select required [compareWith]="compareEntities" placeholder="Crew" [(value)]="newDeparture.crew">
+        <mat-option *ngFor="let crew of crews" [value]="crew">{{crew | crew}}</mat-option>
       </mat-select>
     </mat-form-field>
 

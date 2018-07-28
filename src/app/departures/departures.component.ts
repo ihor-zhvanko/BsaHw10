@@ -69,6 +69,7 @@ export class DeparturesComponent implements OnInit {
       planeId: departureDetails.plane.id,
       crewId: departureDetails.crew.id
     };
+
     this.departureService.create(departure).subscribe((result) => {
       this.departures.push(departureDetails);
       this.newDeparture = <IDepartureDetails>{};

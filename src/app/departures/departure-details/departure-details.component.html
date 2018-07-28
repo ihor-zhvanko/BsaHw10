@@ -1,3 +1,71 @@
-<p>
-  departure-details works!
-</p>
+<mat-card class="w-100" *ngIf="departure">
+  <button (click)="location.back()" mat-button class="m-0 w-auto">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <mat-card-header>
+    <mat-card-title class="uppercase">Departure on {{departure.date}}</mat-card-title>
+  </mat-card-header>
+
+  <div class="pilot-info my-2 cursor-pointer" [routerLink]="['/pilots', departure.plane.id]">
+    Plane: {{departure.plane.name}}
+  </div>
+
+  <div class="pilot-info my-2 cursor-pointer">
+    Flight: {{departure.flight | route}}
+  </div>
+
+  <mat-accordion *ngIf="departure.crew.airhostesses">
+    <mat-expansion-panel [expanded]="crewExpanded" (opened)="airhostessesExpanded = !airhostessesExpanded"
+      hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{departure.crew | crew}}
+        </mat-panel-title>
+        <mat-panel-description class="justify-content-end">
+          <mat-icon>arrow_drop_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-chip-list>
+        <mat-chip class="cursor-pointer" *ngFor="let airhostess of departure.crew.airhostesses" [routerLink]="['/airhostesses', airhostess.id]">{{airhostess | fullname}}</mat-chip>
+      </mat-chip-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <button mat-stroked-button (click)="onEditClick(editDialog)" class="my-2">Edit</button>
+</mat-card>
+
+<ng-template #editDialog>
+  <form (submit)="onEditFormSubmit(departure)" class="d-flex flex-column px-3" action="javascript:void(0)">
+    <h4 class="text-center">Create</h4>
+
+    <mat-form-field class="my-1">
+      <input id="date" required name="date" #date="ngModel" matInput [matDatepicker]="picker" placeholder="Date"
+        [(ngModel)]="departure.date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="date.invalid && (date.dirty || date.touched)">
+      <mat-hint *ngIf="date.errors.required">Date is required</mat-hint>
+    </div>
+
+    <mat-form-field class="my-1">
+      <mat-select required [compareWith]="compareEntities" placeholder="Flight" [(value)]="departure.flight">
+        <mat-option *ngFor="let flight of flights" [value]="flight">{{flight | route}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="my-1">
+      <mat-select required [compareWith]="compareEntities" placeholder="Plane" [(value)]="departure.plane">
+        <mat-option *ngFor="let plane of planes" [value]="plane">{{plane.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="my-1">
+      <mat-select required [compareWith]="compareEntities" placeholder="Crew" [(value)]="departure.crew">
+        <mat-option *ngFor="let crew of crews" [value]="crew">{{crew | crew}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button type="submit">Save</button>
+  </form>
+</ng-template>

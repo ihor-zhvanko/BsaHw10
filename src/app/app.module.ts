@@ -26,12 +26,15 @@ import { CrewsComponent } from './crews/crews.component';
 import { CrewDetailsComponent } from './crews/crew-details/crew-details.component';
 import { DeparturesComponent } from './departures/departures.component';
 import { DepartureDetailsComponent } from './departures/departure-details/departure-details.component';
+import { RoutePipe } from './pipes/route.pipe';
+import { CrewPipe } from './pipes/crew.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
 
     FullnamePipe,
+    RoutePipe,
 
     AirhostessesComponent,
     AirhostessDetailsComponent,
@@ -43,7 +46,8 @@ import { DepartureDetailsComponent } from './departures/departure-details/depart
     CrewsComponent,
     CrewDetailsComponent,
     DeparturesComponent,
-    DepartureDetailsComponent
+    DepartureDetailsComponent,
+    CrewPipe
   ],
   imports: [
     BrowserModule,

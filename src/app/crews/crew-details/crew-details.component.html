@@ -1,4 +1,7 @@
 <mat-card class="w-100" *ngIf="crew">
+  <button (click)="location.back()" mat-button class="m-0 w-auto">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
   <mat-card-header>
     <mat-card-title class="uppercase">Crew #{{crew.id}}</mat-card-title>
   </mat-card-header>
