@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ICrew } from '../common/models';
+import { ICrew, IAirhostess, IPilot } from '../common/models';
 import { MatTableDataSource, MatDialogRef, MatPaginator, MatDialog } from '@angular/material';
 import { CrewService } from '../common/crew.service';
+import { AirhostessService } from '../common/airhostess.service';
+import { PilotService } from '../common/pilot.service';
 import { Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-crews',
@@ -15,12 +18,17 @@ export class CrewsComponent implements OnInit {
   protected crews: ICrew[];
   protected crewsDataSource: MatTableDataSource<ICrew>;
   protected newCrew: ICrew;
+  protected airhostesses: IAirhostess[];
+  protected pilots: IPilot[];
+
   protected dialogRef: MatDialogRef<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private crewService: CrewService,
+    private pilotService: PilotService,
+    private airhostessService: AirhostessService,
     private router: Router,
 
     private dialog: MatDialog
@@ -61,7 +69,18 @@ export class CrewsComponent implements OnInit {
   }
 
   onAddClick(templ: any) {
-    this.dialogRef = this.dialog.open(templ);
+    const airhostesses = this.airhostessService.getAll();
+    const pilots = this.pilotService.getAll();
+
+    forkJoin(airhostesses, pilots).subscribe(result => {
+      this.airhostesses = result[0];
+      this.pilots = result[1];
+
+      this.dialogRef = this.dialog.open(templ);
+    });
   }
 
+  compareEntities(a: { id: number}, b: { id: number }) {
+    return a && b && a.id === b.id;
+  }
 }

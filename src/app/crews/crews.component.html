@@ -35,34 +35,23 @@
   <mat-paginator [pageSize]='10' Buttons></mat-paginator>
 </div>
 
+
 <ng-template #createDialog>
-  <form (submit)="onCreateFormSubmit(newPlaneType)" #createForm class="d-flex flex-column px-3" action="javascript:void(0)">
-    <h4 class="text-center">Create</h4>
-    <mat-form-field class="my-1">
-      <input id="model" required name="model" #model="ngModel" matInput placeholder="Model" [(ngModel)]="newPlaneType.model">
-    </mat-form-field>
-    <div *ngIf="model.invalid && (model.dirty || model.touched)">
-      <mat-hint *ngIf="model.errors.required">Model is required</mat-hint>
-    </div>
-
-    <mat-form-field class="my-1">
-      <input id="seats" required name="seats" #seats="ngModel" matInput placeholder="Seats" [(ngModel)]="newPlaneType.seats"
-        type="number" [min]="1">
-    </mat-form-field>
-    <div *ngIf="seats.invalid && (seats.dirty || seats.touched)">
-      <mat-hint *ngIf="seats.errors.required">Last name is required</mat-hint>
-      <mat-hint *ngIf="seats.errors.min">Seats count should be greater than 0</mat-hint>
-    </div>
-
-    <mat-form-field class="my-1">
-      <input id="carrying" required name="carrying" #carrying="ngModel" matInput placeholder="Carrying" [(ngModel)]="newPlaneType.carrying"
-        type="number" [min]="1">
-    </mat-form-field>
-    <div *ngIf="carrying.invalid && (carrying.dirty || carrying.touched)">
-      <mat-hint *ngIf="carrying.errors.required">Last name is required</mat-hint>
-      <mat-hint *ngIf="carrying.errors.min">Carrying should be greater than 0</mat-hint>
-    </div>
-
-    <button mat-button type="submit">Save</button>
-  </form>
-</ng-template>
+    <form (submit)="onCreateFormSubmit(newCrew)" class="d-flex flex-column px-3" action="javascript:void(0)">
+      <h4 class="text-center">Create</h4>
+      <mat-form-field class="my-1">
+        <mat-select required [compareWith]="compareEntities" placeholder="Pilot" [(value)]="newCrew.pilot">
+          <mat-option *ngFor="let pilot of pilots" [value]="pilot">{{pilot | fullname}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="my-1">
+        <mat-select [compareWith]="compareEntities" placeholder="Airhostesses" [(value)]="newCrew.airhostesses"
+          multiple>
+          <mat-option *ngFor="let airhostess of airhostesses" [value]="airhostess">{{airhostess | fullname}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-button type="submit">Save</button>
+    </form>
+  </ng-template>
