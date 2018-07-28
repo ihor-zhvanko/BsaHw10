@@ -1,5 +1,12 @@
 # BsaHw10
 
+## USE BsaHW7 for SERVER SIDE
+
+* ``` git clone https://github.com/ihor-zhvanko/BsaHw7 ```
+* ``` dotnet restore ```
+* ``` dotnet ef database update ```
+* ``` dotnet run ```
+
 ## Tenth homework
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.0.
