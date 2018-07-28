@@ -3,11 +3,13 @@ import { Location } from '@angular/common';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, forkJoin } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
-import { ICrew } from '../../common/models';
+import { ICrew, IAirhostess, IPilot } from '../../common/models';
 import { CrewService } from '../../common/crew.service';
+import { AirhostessService } from '../../common/airhostess.service';
+import { PilotService } from '../../common/pilot.service';
 
 
 @Component({
@@ -21,12 +23,17 @@ export class CrewDetailsComponent implements OnInit, OnDestroy {
   protected crew: ICrew;
   protected airhostessesExpanded: boolean;
   protected dialogRef: MatDialogRef<any>;
+  protected airhostesses: IAirhostess[];
+  protected pilots: IPilot[];
 
   constructor(
     protected activatedRoute: ActivatedRoute,
     protected location: Location,
 
     protected crewService: CrewService,
+    protected pilotService: PilotService,
+    protected airhostessService: AirhostessService,
+
     protected dialog: MatDialog
   ) { }
 
@@ -43,7 +50,15 @@ export class CrewDetailsComponent implements OnInit, OnDestroy {
   }
 
   onEditClick(templ: any) {
-    this.dialogRef = this.dialog.open(templ);
+    const airhostesses = this.airhostessService.getAll();
+    const pilots = this.pilotService.getAll();
+
+    forkJoin(airhostesses, pilots).subscribe(result => {
+      this.airhostesses = result[0];
+      this.pilots = result[1];
+
+      this.dialogRef = this.dialog.open(templ);
+    });
   }
 
   onEditFormSubmit(crew: ICrew) {
@@ -51,6 +66,10 @@ export class CrewDetailsComponent implements OnInit, OnDestroy {
       this.crew = updated;
     });
     this.dialogRef.close();
+  }
+
+  compareEntities(a: { id: number}, b: { id: number }) {
+    return a.id === b.id;
   }
 
 }

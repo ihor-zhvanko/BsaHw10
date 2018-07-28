@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {
   MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule,
   MatListModule, MatDialogModule, MatFormFieldModule, MatDatepickerModule,
-  MatNativeDateModule, MatInputModule, MatTableModule, MatPaginatorModule, MatExpansionModule, MatChipsModule
+  MatNativeDateModule, MatInputModule, MatTableModule, MatPaginatorModule, MatExpansionModule, MatChipsModule, MatSelectModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -53,7 +53,8 @@ import { CrewDetailsComponent } from './crews/crew-details/crew-details.componen
     MatCardModule, MatToolbarModule, MatListModule,
     MatDialogModule, MatFormFieldModule, MatDatepickerModule,
     MatNativeDateModule, MatInputModule, MatTableModule,
-    MatPaginatorModule, MatExpansionModule, MatChipsModule
+    MatPaginatorModule, MatExpansionModule, MatChipsModule,
+    MatSelectModule
 
   ],
   bootstrap: [AppComponent]

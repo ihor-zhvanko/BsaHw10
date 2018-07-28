@@ -12,7 +12,7 @@ import { CrewDetailsComponent } from './crews/crew-details/crew-details.componen
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'airhostesses',
+    redirectTo: 'crews',
     pathMatch: 'full'
   },
   {

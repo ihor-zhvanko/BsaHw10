@@ -23,4 +23,25 @@
       </mat-chip-list>
     </mat-expansion-panel>
   </mat-accordion>
+  <button mat-stroked-button (click)="onEditClick(editDialog)" class="my-2">Edit</button>
 </mat-card>
+
+<ng-template #editDialog>
+  <form (submit)="onEditFormSubmit(crew)" class="d-flex flex-column px-3" action="javascript:void(0)">
+    <h4 class="text-center">Create</h4>
+    <mat-form-field class="my-1">
+      <mat-select [compareWith]="compareEntities" placeholder="Pilot" [(value)]="crew.pilot">
+        <mat-option *ngFor="let pilot of pilots" [value]="pilot">{{pilot | fullname}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="my-1">
+      <mat-select [compareWith]="compareEntities" placeholder="Airhostesses" [(value)]="crew.airhostesses"
+        multiple>
+        <mat-option *ngFor="let airhostess of airhostesses" [value]="airhostess">{{airhostess | fullname}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-button type="submit">Save</button>
+  </form>
+</ng-template>

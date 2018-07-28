@@ -33,12 +33,12 @@ export class BaseService<TModel> {
 
   public update(id: number, model: TModel): Observable<TModel> {
     const url = `${this.baseUrl}/${id}`;
-    return this.httpClient.put<TModel>(url, model);
+    return this.httpClient.put<TModel>(url, this.mapOnSet(model));
   }
 
   public create(model: TModel): Observable<TModel> {
     const url = `${this.baseUrl}`;
-    return this.httpClient.post<TModel>(url, model);
+    return this.httpClient.post<TModel>(url, this.mapOnSet(model));
   }
 
   public delete(id: number): Observable<void> {

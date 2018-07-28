@@ -20,4 +20,12 @@ export class CrewService extends BaseService<ICrew> {
       pilot: { ...model.pilot, birthDate: new Date(model.pilot.birthDate) }
     };
   }
+
+  protected mapOnSet(model: ICrew): any {
+    return {
+      id: model.id,
+      pilotId: model.pilot.id,
+      airhostessIds: model.airhostesses.map(x => x.id)
+    };
+  }
 }
