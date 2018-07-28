@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
-import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
+
 import { AirhostessService } from '../../common/airhostess.service';
 import { IAirhostess } from '../../common/models';
-import { AirhostessModalComponent } from '../../modals/airhostess-modal/airhostess-modal.component';
+
 
 @Component({
   selector: 'app-airhostess-details',
@@ -16,10 +17,14 @@ import { AirhostessModalComponent } from '../../modals/airhostess-modal/airhoste
 export class AirhostessDetailsComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
   protected airhostess: IAirhostess;
+  protected dialogRef: MatDialogRef<any>;
 
   constructor(
     protected activatedRoute: ActivatedRoute,
-    protected airhostessService: AirhostessService
+    protected location: Location,
+
+    protected airhostessService: AirhostessService,
+    protected dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -30,6 +35,19 @@ export class AirhostessDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routeSub.unsubscribe();
+  }
+
+  onEditClick(templ: any) {
+    // debugger;
+
+    this.dialogRef = this.dialog.open(templ);
+  }
+
+  onEditFormSubmit(airhostess: IAirhostess) {
+    this.airhostessService.update(airhostess.id, airhostess).subscribe((updated) => {
+      this.airhostess = updated;
+    });
+    this.dialogRef.close();
   }
 
 }

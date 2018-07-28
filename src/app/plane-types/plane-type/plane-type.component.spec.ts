@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AirhostessModalComponent } from './airhostess-modal.component';
+import { PlaneTypeComponent } from './plane-type.component';
 
-describe('AirhostessModalComponent', () => {
-  let component: AirhostessModalComponent;
-  let fixture: ComponentFixture<AirhostessModalComponent>;
+describe('PlaneTypeComponent', () => {
+  let component: PlaneTypeComponent;
+  let fixture: ComponentFixture<PlaneTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AirhostessModalComponent ]
+      declarations: [ PlaneTypeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AirhostessModalComponent);
+    fixture = TestBed.createComponent(PlaneTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

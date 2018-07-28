@@ -1,22 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=PT+Serif:400,700');
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+@import "custom-styles/all";
 
 $body-bg: #fafafa;
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
+html, body, app-root {
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
   background-color: $body-bg;
+  height: 100%;
+
+  .mat-sidenav-container {
+    flex-grow: 1;
+  }
 }
 
+h4 {
+  font-size: 2rem;
+}
+
+
 .mat-card.person {
-  max-width: 170px;
-  min-width: 170px;
+  max-width: 200px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   margin: 1rem;
@@ -39,10 +55,14 @@ html, body {
     .mat-card-title {
       font-size: 2rem;
     }
+
+    .mat-card-actions {
+      margin: 0;
+    }
   }
 
   img {
-    max-width: 100px;
+    max-width: 130px;
     margin: 0;
   }
 

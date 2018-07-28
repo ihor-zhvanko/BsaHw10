@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {
   MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule,
-  MatListModule, MatDialogModule
+  MatListModule, MatDialogModule, MatFormFieldModule, MatDatepickerModule,
+  MatNativeDateModule, MatInputModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -15,7 +16,12 @@ import { AppComponent } from './app.component';
 import { AirhostessesComponent } from './airhostesses/airhostesses.component';
 import { FullnamePipe } from './pipes/fullname.pipe';
 import { AirhostessDetailsComponent } from './airhostesses/airhostess-details/airhostess-details.component';
-import { AirhostessModalComponent } from './modals/airhostess-modal/airhostess-modal.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { PilotsComponent } from './pilots/pilots.component';
+import { PilotDetailsComponent } from './pilots/pilot-details/pilot-details.component';
+import { PlaneTypesComponent } from './plane-types/plane-types.component';
+import { PlaneTypeComponent } from './plane-types/plane-type/plane-type.component';
 
 @NgModule({
   declarations: [
@@ -25,21 +31,26 @@ import { AirhostessModalComponent } from './modals/airhostess-modal/airhostess-m
 
     AirhostessesComponent,
     AirhostessDetailsComponent,
-    AirhostessModalComponent
+    NavbarComponent,
+    PilotsComponent,
+    PilotDetailsComponent,
+    PlaneTypesComponent,
+    PlaneTypeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AirportCommonModule,
+    FormsModule,
 
     // Material
     MatButtonModule, MatSidenavModule, MatIconModule,
     MatCardModule, MatToolbarModule, MatListModule,
-    MatDialogModule
+    MatDialogModule, MatFormFieldModule, MatDatepickerModule,
+    MatNativeDateModule, MatInputModule
 
   ],
-  entryComponents: [AirhostessModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

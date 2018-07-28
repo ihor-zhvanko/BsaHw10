@@ -1,0 +1,61 @@
+// Screen sizes
+$mobile-l-size: 425px;
+$tablet-size: 768px;
+$laptop-size: 1024px;
+
+@import 'flex-utils';
+@import 'spacers-utils';
+
+// Common styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+// text utils
+.uppercase {
+  text-transform: uppercase;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+// Headers
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+// other
+.w-auto {
+  width: auto !important;
+  min-width: unset !important;
+  max-width: unset !important;
+}

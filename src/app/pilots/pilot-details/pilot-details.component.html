@@ -1,17 +1,20 @@
-<mat-card class="person details" *ngIf="airhostess">
+<mat-card class="person details" *ngIf="pilot">
   <button (click)="location.back()" mat-button class="m-0 w-auto">
     <mat-icon>arrow_back</mat-icon>
   </button>
 
-  <img mat-card-image src="/assets/img/airhostess.png" alt="Airhostess">
+  <img mat-card-image src="/assets/img/pilot.png" alt="Pilot">
 
   <div class="person-info">
     <mat-card-header>
-      <mat-card-title>{{airhostess | fullname}}</mat-card-title>
+      <mat-card-title>{{pilot | fullname}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <p>
-        Birthday on {{airhostess.birthDate | date:'dd/MM/yyyy'}}
+        Birthday on {{pilot.birthDate | date:'dd/MM/yyyy'}}
+      </p>
+      <p>
+        Experience {{pilot.experience}}
       </p>
     </mat-card-content>
     <mat-card-actions>
@@ -21,11 +24,11 @@
 </mat-card>
 
 <ng-template #editDialog>
-  <form (submit)="onEditFormSubmit(airhostess)" class="d-flex flex-column px-3" action="javascript:void(0)">
-    <h4 class="text-center">Create</h4>
+  <form (submit)="onEditFormSubmit(pilot)" class="d-flex flex-column px-3" action="javascript:void(0)">
+    <h4 class="text-center">Edit</h4>
     <mat-form-field class="my-1">
       <input id="firstName" required name="firstName" #firstName="ngModel" matInput placeholder="First name"
-        [(ngModel)]="airhostess.firstName">
+        [(ngModel)]="pilot.firstName">
     </mat-form-field>
     <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
       <mat-hint *ngIf="firstName.errors.required">First is required</mat-hint>
@@ -34,7 +37,7 @@
 
     <mat-form-field class="my-1">
       <input id="secondName" required name="lastName" #lastName="ngModel" matInput placeholder="Last name"
-        [(ngModel)]="airhostess.lastName">
+        [(ngModel)]="pilot.lastName">
     </mat-form-field>
     <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
       <mat-hint *ngIf="lastName.errors.required">Last name is required</mat-hint>
@@ -42,12 +45,21 @@
 
     <mat-form-field class="my-1">
       <input id="birthDate" required name="birthDate" #birthDate="ngModel" matInput [matDatepicker]="picker"
-        placeholder="Birth Date" [(ngModel)]="airhostess.birthDate">
+        placeholder="Birth Date" [(ngModel)]="pilot.birthDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)">
       <mat-hint *ngIf="birthDate.errors.required">Birth date is required</mat-hint>
+    </div>
+
+    <mat-form-field class="my-1">
+      <input id="experience" required name="experience" #experience="ngModel" matInput type="number" placeholder="Experience"
+        [(ngModel)]="pilot.experience" min="1">
+    </mat-form-field>
+    <div *ngIf="experience.invalid && (experience.dirty || experience.touched)">
+      <mat-hint *ngIf="experience.errors.required">Birth date is required</mat-hint>
+      <mat-hint *ngIf="experience.errors.min">Birth date is required</mat-hint>
     </div>
 
     <button mat-button type="submit">Save</button>
