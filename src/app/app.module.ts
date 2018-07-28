@@ -24,6 +24,8 @@ import { PlaneTypesComponent } from './plane-types/plane-types.component';
 import { PlaneTypeDetailsComponent } from './plane-types/plane-type-details/plane-type-details.component';
 import { CrewsComponent } from './crews/crews.component';
 import { CrewDetailsComponent } from './crews/crew-details/crew-details.component';
+import { DeparturesComponent } from './departures/departures.component';
+import { DepartureDetailsComponent } from './departures/departure-details/departure-details.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CrewDetailsComponent } from './crews/crew-details/crew-details.componen
     PlaneTypesComponent,
     PlaneTypeDetailsComponent,
     CrewsComponent,
-    CrewDetailsComponent
+    CrewDetailsComponent,
+    DeparturesComponent,
+    DepartureDetailsComponent
   ],
   imports: [
     BrowserModule,

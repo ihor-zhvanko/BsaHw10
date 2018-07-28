@@ -5,7 +5,7 @@ import { map, flatMap } from 'rxjs/operators';
 export class BaseService<TModel> {
   constructor(
     protected httpClient: HttpClient,
-    private baseUrl: string
+    protected baseUrl: string
   ) {
   }
 
