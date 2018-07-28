@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {
   MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule,
   MatListModule, MatDialogModule, MatFormFieldModule, MatDatepickerModule,
-  MatNativeDateModule, MatInputModule
+  MatNativeDateModule, MatInputModule, MatTableModule, MatPaginatorModule, MatExpansionModule, MatChipsModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -21,7 +21,9 @@ import { FormsModule } from '@angular/forms';
 import { PilotsComponent } from './pilots/pilots.component';
 import { PilotDetailsComponent } from './pilots/pilot-details/pilot-details.component';
 import { PlaneTypesComponent } from './plane-types/plane-types.component';
-import { PlaneTypeComponent } from './plane-types/plane-type/plane-type.component';
+import { PlaneTypeDetailsComponent } from './plane-types/plane-type-details/plane-type-details.component';
+import { CrewsComponent } from './crews/crews.component';
+import { CrewDetailsComponent } from './crews/crew-details/crew-details.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { PlaneTypeComponent } from './plane-types/plane-type/plane-type.componen
     PilotsComponent,
     PilotDetailsComponent,
     PlaneTypesComponent,
-    PlaneTypeComponent
+    PlaneTypeDetailsComponent,
+    CrewsComponent,
+    CrewDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,8 @@ import { PlaneTypeComponent } from './plane-types/plane-type/plane-type.componen
     MatButtonModule, MatSidenavModule, MatIconModule,
     MatCardModule, MatToolbarModule, MatListModule,
     MatDialogModule, MatFormFieldModule, MatDatepickerModule,
-    MatNativeDateModule, MatInputModule
+    MatNativeDateModule, MatInputModule, MatTableModule,
+    MatPaginatorModule, MatExpansionModule, MatChipsModule
 
   ],
   bootstrap: [AppComponent]

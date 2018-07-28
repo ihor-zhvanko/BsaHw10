@@ -1,0 +1,26 @@
+<mat-card class="w-100" *ngIf="crew">
+  <mat-card-header>
+    <mat-card-title class="uppercase">Crew #{{crew.id}}</mat-card-title>
+  </mat-card-header>
+
+  <div class="pilot-info my-2 cursor-pointer" [routerLink]="['/pilots', crew.pilot.id]">
+    Pilot: {{crew.pilot | fullname}}
+  </div>
+
+  <mat-accordion *ngIf="crew.airhostesses">
+    <mat-expansion-panel [expanded]="airhostessesExpanded" (opened)="airhostessesExpanded = !airhostessesExpanded"
+      hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Airhostesses
+        </mat-panel-title>
+        <mat-panel-description class="justify-content-end">
+          <mat-icon>arrow_drop_down</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-chip-list>
+        <mat-chip class="cursor-pointer" *ngFor="let airhostess of crew.airhostesses" [routerLink]="['/airhostesses', airhostess.id]">{{airhostess | fullname}}</mat-chip>
+      </mat-chip-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

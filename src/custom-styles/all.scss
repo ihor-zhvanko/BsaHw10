@@ -59,3 +59,13 @@ h6 {
   min-width: unset !important;
   max-width: unset !important;
 }
+
+@for $i from 1 through 10 {
+  .w-#{$i*10} {
+    width: $i*10%; 
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
